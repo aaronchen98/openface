@@ -6,8 +6,10 @@ from pylab import array
 from pylab import plot
 from pylab import title
 from pylab import show
+import time
 
 
+start = time.time()
 a = op.AlignDlib(
     '/Users/aaron/anaconda3/lib/python3.6/site-packages/face_recognition_models/models/shape_predictor_68_face_landmarks.dat')
 
@@ -18,7 +20,8 @@ rgbImg = cv2.cvtColor(bgrImg, cv2.COLOR_BGR2RGB)
 
 bb = a.getLargestFaceBoundingBox(rgbImg)
 points = a.findLandmarks(rgbImg, bb=bb)
-
+end = time.time()
+print(end - start)
 
 im = array(Image.open('/Users/aaron/Desktop/1.jpg'))
 imshow(im)
