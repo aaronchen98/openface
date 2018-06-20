@@ -1,8 +1,11 @@
 import cv2
 import numpy as np
+import time
 
+
+s = time.time()
 # Read Image
-im = cv2.imread("headPose.jpg")
+im = cv2.imread("/Users/aaron/code/openface_work/openface/headPose.jpg")
 size = im.shape
 
 # 2D image points. If you change the image, you need to change vector
@@ -54,6 +57,9 @@ print("Translation Vector:\n {0}".format(translation_vector))
 
 (nose_end_point2D, jacobian) = cv2.projectPoints(np.array(
     [(0.0, 0.0, 1000.0)]), rotation_vector, translation_vector, camera_matrix, dist_coeffs)
+
+e = time.time()
+print(e - s)
 
 for p in image_points:
     cv2.circle(im, (int(p[0]), int(p[1])), 3, (0, 0, 255), -1)
